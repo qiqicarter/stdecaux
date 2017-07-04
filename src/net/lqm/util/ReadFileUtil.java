@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ReadFileUtil {
-	public static List<String> readTxtFile(String filePath) {
+	public static List<String> readTxtFile(String filePath,boolean display) {
 		try {
 			Set<String> set = new HashSet<String>();
 			String encoding = "UTF-8";
@@ -24,7 +24,8 @@ public class ReadFileUtil {
 				}
 				read.close();
 				List<String> list = new ArrayList<String>(set);
-				System.out.println("总共读入"+list.size()+"条记录");
+				if(display)
+					System.out.println("总共读入"+list.size()+"条记录");
 				return list;
 			} else {
 				System.out.println("找不到指定的文件");

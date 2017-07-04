@@ -15,7 +15,7 @@ public class VoteMain {
 	public static void main(String[] args) {
 		List<String> names = new ArrayList<String>();
 //		names.add("vpkfyo026");
-		names = ReadFileUtil.readTxtFile("D:\\Documents\\we\\sea_other.txt");
+		names = ReadFileUtil.readTxtFile("D:\\Documents\\we\\sea_other.txt",true);
 
 		for (String s : names) {
 			try {
@@ -51,8 +51,11 @@ public class VoteMain {
 	private static void votePhoto(String token) {
 		String url = "http://smile.stdecaux.net.cn/stdecaux/api/photo/favoritePicture?token=" + token;
 //		String param = "{\"parameters\":\"IOiDtsSnOE1qsW3wHOwDxZXY8Ulfbo20LNvP1urM65SvAdb0KarjU2wMPrDg +NZp\"}";//吴
-		
+//		String param = "{\"parameters\":\"3XnsRG6wzl+TQUTOaYECDiezohZiXgSrbw0YzqJec8R1QLihBTm1lvm4DFxL +a0q\"}";  //许
+//		String param = "{\"parameters\":\"3XnsRG6wzl+TQUTOaYECDvpVjSe6svvb96q+RJfuF1V1QLihBTm1lvm4DFxL +a0q\"}";  //michlie
+//		String param = "{\"parameters\":\"3XnsRG6wzl+TQUTOaYECDppHkugomKI7KAATNmO1pxZ1QLihBTm1lvm4DFxL +a0q\"}";  //michlie2
 		String param = "{\"parameters\":\"IOiDtsSnOE1qsW3wHOwDxfuxbuh1Abe+eoD797MN4Q6vAdb0KarjU2wMPrDg +NZp\"}";//罗
+		
 		String res = HttpUtils.sendPost(url, param);
 		System.out.println(res);
 	}

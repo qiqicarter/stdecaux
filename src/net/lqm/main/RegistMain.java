@@ -8,17 +8,18 @@ import com.alibaba.fastjson.JSONObject;
 
 import net.lqm.util.CodeConvertUtils;
 import net.lqm.util.HttpUtils;
+import net.lqm.util.NameUtils;
 import net.lqm.util.RandomCharUtil;
 
 public class RegistMain {
 	public static final String userId = "33084";
 	public static void main(String[] args) {
-//		String user = registerWeApp("14575781315", "5295");
+//		String user = registerWeApp("13902727978", "3569");
 //		System.out.println(user);
 		
 		String token = getToken();
 		if (!"".equals(token)) {
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 5; i++) {
 				new Thread() {
 					public void run() {
 						String phone = getPhoneNum(token);
@@ -103,8 +104,9 @@ public class RegistMain {
 		String mac = RandomCharUtil.getRandomNumberChar(2) + ":" + RandomCharUtil.getRandomNumberChar(2) + ":"
 				+ RandomCharUtil.getRandomNumberChar(2) + ":" + RandomCharUtil.getRandomNumberChar(2) + ":"
 				+ RandomCharUtil.getRandomNumberChar(2) + ":" + RandomCharUtil.getRandomNumberChar(2);
-		String user = RandomCharUtil.getRandomLowerLetterChar(4) + RandomCharUtil.getRandomNumberChar(4);
-
+//		String user = RandomCharUtil.getRandomLowerLetterChar(4) + RandomCharUtil.getRandomNumberChar(4);
+		
+		String user = NameUtils.getName().toLowerCase() + NameUtils.getYear();
 		String url = "http://smile.stdecaux.net.cn/stdecaux/api/user/register";
 		String param = "{\"parameters\":{\"verification_code\":\"" + code + "\",\"mobile_phone\":\"" + phone
 				+ "\",\"username\":\"" + user
