@@ -18,7 +18,7 @@ public class RegistMain {
 		
 		String token = getToken();
 		if (!"".equals(token)) {
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 4; i++) {
 				new Thread() {
 					public void run() {
 						String phone = getPhoneNum(token);
