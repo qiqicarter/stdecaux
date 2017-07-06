@@ -11,19 +11,36 @@ import com.alibaba.fastjson.JSONObject;
 import net.lqm.util.HttpUtils;
 import net.lqm.util.ReadFileUtil;
 
-public class CrackMain {
+public class FindMain {
+
 	public static void main(String[] args) {
-		//61066=michlie;61271=柠檬爸爸;61010=wangjunling3
-		for(String userId : getFavoriteUsers("61536")) {
-			String name = getUserName(userId);
-			String str = loginWeApp(name);
-			if(str!=null) {
-				System.out.println(str);
-				ReadFileUtil.writeTxtFile("D:\\Documents\\we\\kittymm.txt", str);
+		List<String> myList = new ArrayList<String>();
+//		for(String userId : getFavoriteUsers("61671")) {
+//			myList.add(getUserName(userId));
+//		}
+		myList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\ningmengbaba.txt",false);
+		List<String> voteList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\kittymm.txt",false);
+		
+		List<String> resList = new ArrayList<String>();
+		
+		for(String vs : voteList){
+			boolean flag = false;
+			for(String ms : myList){
+				if(vs.equals(ms)){
+					flag = true;
+				}
+			}
+			if(!flag){
+				resList.add(vs);
 			}
 		}
+
+		System.out.println("未投票:"+ resList.size());
+		for(String vs : resList){
+			System.out.println(vs);
+		}
 	}
-	
+
 	private static List<String> getFavoriteUsers(String imageId) {
 		List<String> returnList = new ArrayList<String>();
 		String url = "http://smile.stdecaux.net.cn/stdecaux/api/photo/favoriteUsers";
@@ -51,22 +68,5 @@ public class CrackMain {
 		JSONObject userinfo = (JSONObject)content.get("user_info");
 		
 		return userinfo.get("username")+"";
-	}
-	
-	private static String loginWeApp(String user) {
-		String url = "http://smile.stdecaux.net.cn/stdecaux/api/user/login";
-		String param = "{\"parameters\":{\"version\":\"1.3.0\",\"username\":\"" + user + "\",\"password\":\""+user+"\"}}";
-
-		String res = HttpUtils.sendPost(url, param);
-
-		Map<String, JSONObject> map = (Map<String, JSONObject>) JSON.parse(res);
-
-		try {
-			map.get("content").get("token").toString();
-			return user;
-		} catch (Exception e) {
-			System.out.println("password is wrong： "+user);
-		}
-		return null;
 	}
 }
