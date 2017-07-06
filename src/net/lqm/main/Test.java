@@ -1,18 +1,22 @@
 package net.lqm.main;
 
-import net.lqm.util.Base64Utils;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import net.lqm.util.ReadFileUtil;
 
 public class Test {
 
 	public static void main(String[] args) {
-		String s = "kkNLPz2wW9lkWvOyni3kg30teLV46PoABlZvJ7S3y6Fl00ofaxSjAzOvVTGwrZrq6C+MHSttAbs/2axZvR63Sw==";
-		try {
-			System.out.println(new String(Base64Utils.decodeBase64(s),"UTF-8"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		List<String> l1 = ReadFileUtil.readTxtFile("D:\\Documents\\we\\wangjunling.txt", false);
+		List<String> l2 = ReadFileUtil.readTxtFile("D:\\Documents\\we\\ningmengbaba.txt", false);
+		
+		Set<String> set=new HashSet<String>();         
+        set.addAll(l1);
+        set.addAll(l2);
+        
+        System.out.println(set.size());
 	}
 
 }

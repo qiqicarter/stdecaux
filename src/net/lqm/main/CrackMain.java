@@ -12,7 +12,8 @@ import net.lqm.util.HttpUtils;
 
 public class CrackMain {
 	public static void main(String[] args) {
-		for(String userId : getFavoriteUsers("61066")) {
+		//61066=michlie;61271=柠檬爸爸;61010=wangjunling3
+		for(String userId : getFavoriteUsers("61271")) {
 			String name = getUserName(userId);
 			String str = loginWeApp(name);
 			if(str!=null) {
