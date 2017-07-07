@@ -19,9 +19,9 @@ public class NameUtils {
 	
 	public static String getYear(){
 		double d = Math.random();
-		int time = (int) (d * 16);
+		int time = (int) (d * 10);
 		
-		int year = 2010+time;
+		int year = 1+time;
 				
 		return year+"";
 	}
