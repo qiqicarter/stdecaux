@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="source"/>
 	<classpathentry kind="lib" path="libs/fastjson-1.2.21.jar"/>
 	<classpathentry kind="lib" path="libs/sun.misc.BASE64Decoder.jar"/>
 	<classpathentry kind="output" path="bin"/>
