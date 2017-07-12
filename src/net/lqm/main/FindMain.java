@@ -18,7 +18,7 @@ public class FindMain {
 //		for(String userId : getFavoriteUsers("61671")) {
 //			myList.add(getUserName(userId));
 //		}
-		myList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\ningmengbaba.txt",false);
+		myList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\my.txt",false);
 		List<String> voteList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\kittymm.txt",false);
 		
 		List<String> resList = new ArrayList<String>();

