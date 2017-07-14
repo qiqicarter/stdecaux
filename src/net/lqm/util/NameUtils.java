@@ -7,7 +7,7 @@ public class NameUtils {
 	public static String getName(){
 		try {
 			List<String> tmp = new ArrayList<String>();
-			tmp = ReadFileUtil.readTxtFile("source\\names.txt",false);
+			tmp = ReadFileUtil.readTxtFile("source/names.txt",false);
 			double d = Math.random();
 			int time = (int) (d * 505);
 			

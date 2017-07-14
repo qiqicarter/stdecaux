@@ -45,7 +45,7 @@ public class PasswordMain {
 
 	public static List<String> getSimplePasswords() {
 		String s = "000000、111111、11111111、112233、123123、123321、123456、12345678、654321、"
-				+ "666666、888888、88888888、abcdef、abcabc、a1b2c3、aaa111、123qwe、"
+				+ "666666、888888、88888888、abcdef、abcabc、a1b2c3、aaa111、123qwe、qq123456、qqq123456"
 				+ "qwerty、qweasd、admin、password、p@ssword、passwd、iloveyou、5201314";
 		String[] ss = s.split("、");
 		List<String> list = new ArrayList<String>();
