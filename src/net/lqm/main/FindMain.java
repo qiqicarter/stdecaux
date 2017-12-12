@@ -18,8 +18,8 @@ public class FindMain {
 //		for(String userId : getFavoriteUsers("61671")) {
 //			myList.add(getUserName(userId));
 //		}
-		myList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\my.txt",false);
-		List<String> voteList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\kittymm.txt",false);
+		myList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\67142.txt",false);
+		List<String> voteList = ReadFileUtil.readTxtFile("D:\\Documents\\we\\account\\same_psw.txt",false);
 		
 		List<String> resList = new ArrayList<String>();
 		
@@ -38,6 +38,7 @@ public class FindMain {
 		System.out.println("未投票:"+ resList.size());
 		for(String vs : resList){
 			System.out.println(vs);
+			ReadFileUtil.writeTxtFile("D:\\Documents\\we\\my1.txt", vs);
 		}
 	}
 

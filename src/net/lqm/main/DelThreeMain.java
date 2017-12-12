@@ -1,6 +1,7 @@
 package net.lqm.main;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,34 +11,50 @@ import com.alibaba.fastjson.JSONObject;
 import net.lqm.util.HttpUtils;
 import net.lqm.util.ReadFileUtil;
 
-public class DelMain {
+public class DelThreeMain {
 
 	public static void main(String[] args) {
-		List<String> names = new ArrayList<String>();
-		names = ReadFileUtil.readTxtFile("D:\\Documents\\we\\m1.txt",true);
+		List<String> m1 = new ArrayList<String>();
+		m1 = ReadFileUtil.readTxtFile("/home/std/m1.txt",true);
+//		List<String> m2 = new ArrayList<String>();
+//		m2 = ReadFileUtil.readTxtFile("/home/std/m2.txt",true);
+		List<String> m3 = new ArrayList<String>();
+		m3 = ReadFileUtil.readTxtFile("/home/std/m3.txt",true);
 		
-		int times = 1;
-		
-		for (String s : names) {
+		for (int i=1;i<771;i++) {
 			try {
-//				if(times%28==0) {
-//					System.out.println("防止被封，休息630分钟");
-//					Thread.sleep(60*60*1000);
-//				}
-				
-				String token = loginWeApp(s,s);
-//				Thread.sleep(3000);
-				if (!"".equals(token)) {
-					System.out.println(s);
-					votePhoto(token);
-					Thread.sleep(2200);
+				if(i%28==0) {
+					System.out.println("防止被封，休息64分钟");
+					System.out.println(new Date());
+					Thread.sleep(64*60*1000);
 				}
+				loginAndVote(m1.get(i-1),1);
+//				loginAndVote(m2.get(i-1),2);
+				try {
+					loginAndVote(m3.get(i-1),3);
+				} catch (Exception e) {
+					System.out.println("m3 is finished");
+				}
+				
+				Thread.sleep(2345);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			times++;
 		}
-
+	}
+	
+	private static void loginAndVote(String s,int i) {
+		try {
+			String token = loginWeApp(s,s);
+			
+			if (!"".equals(token)) {
+				System.out.println(s);
+				votePhoto(token,i);
+				Thread.sleep(1234);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static String loginWeApp(String user,String pass) {
@@ -76,18 +93,28 @@ public class DelMain {
 		return "";
 	}
 	
-	private static void votePhoto(String token) {
+	private static void votePhoto(String token,int i) {
 		String url = "http://smile.stdecaux.net.cn/stdecaux/api/photo/favoritePicture?token=" + token;
-		String param = "{\"parameters\":\"IiH3cZyCawg1haJy30c1MN5e8wKGA6hI6J4ybDimF+\\/gBfscHnTiYwoo\\/WVx JWmY\"}";
+		String param = null;
+		switch (i) {
+		case 1:
+			param = "{\"parameters\":\"mWdTQXW4Ku+sUHsknIa3ltJB7tbTL\\/G354ISdPHhtSdXEndaxrNafRcxr4sF G0pH\"}";
+			break;
+		case 2:
+			param = "{\"parameters\":\"mWdTQXW4Ku+sUHsknIa3loHHSfmWWz9uNwZY\\/6\\/nTCBXEndaxrNafRcxr4sF G0pH\"}";
+			break;
+		case 3:
+			param = "{\"parameters\":\"mWdTQXW4Ku+sUHsknIa3lvGST+m3oXBef5MOlpK7f3lXEndaxrNafRcxr4sF G0pH\"}";
+		default:
+			break;
+		}
 		
-//		String res1 = HttpUtils.sendPost(url, param_m);
-//		System.out.println("m:"+res1);
 		
 		String res2 = HttpUtils.sendPost(url, param);
 		if(res2.indexOf("200")>0) {
-			System.out.println("success");
+			System.out.println("m"+i+":"+"success");
 		}else
-			System.out.println("kelly"+res2);
+			System.out.println("m"+i+":"+res2);
 	}
 
 }

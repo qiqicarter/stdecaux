@@ -105,7 +105,7 @@ public class RegistMain {
 				+ RandomCharUtil.getRandomNumberChar(2) + ":" + RandomCharUtil.getRandomNumberChar(2) + ":"
 				+ RandomCharUtil.getRandomNumberChar(2) + ":" + RandomCharUtil.getRandomNumberChar(2);
 //		String user = RandomCharUtil.getRandomLowerLetterChar(4) + RandomCharUtil.getRandomNumberChar(4);
-		String user = NameUtils.getName().toLowerCase() + NameUtils.getYear() ;
+		String user = NameUtils.getName().toLowerCase() + "_cici" ;
 
 		String url = "http://smile.stdecaux.net.cn/stdecaux/api/user/register";
 		String param = "{\"parameters\":{\"verification_code\":\"" + code + "\",\"mobile_phone\":\"" + phone

